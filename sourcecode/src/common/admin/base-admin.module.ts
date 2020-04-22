@@ -55,6 +55,8 @@ import {NewLineModalComponent} from './translations/new-line-modal/new-line-moda
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AdsComponent } from './ads/ads.component';
 import { DownloadComponent } from './ads/download/download.component';
+import { DvdComponent } from './ads/dvd/dvd.component';
+import { BluerayComponent } from './ads/blueray/blueray.component';
 import { BannerComponent } from './ads/banner/banner.component';
 import { PopupsComponent } from './ads/popups/popups.component';
 import { PopupsPanelComponent } from './ads/popups/popups-panel/popups-panel.component';
@@ -124,6 +126,8 @@ import { AddPopupModalComponent } from './ads/popups/add-popup-modal/add-popup-m
 
         AdsComponent,
         DownloadComponent,
+        DvdComponent,
+        BluerayComponent,
         BannerComponent,
         PopupsComponent,
         PopupsPanelComponent,

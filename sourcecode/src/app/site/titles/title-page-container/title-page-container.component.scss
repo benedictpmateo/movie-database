@@ -4,11 +4,30 @@ title-page-container {
   display: block;
   width: 100%;
   .ads {
+    &-container {
+      display: flex;
+      justify-content: center;
+    }
     &-download {
       text-align: center;
+      &--black {
+        display: flex;
+        a {
+          background: #F44336;
+          font-size: 28px;
+          padding: 10px 15px;
+          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+          min-width: 64px;
+          line-height: 36px;
+          color: white;
+          font-weight: 500;
+          border-radius: 4px;
+        }
+      }
       a {
         font-size: 28px;
         padding: 10px 15px;
+        margin: 0 10px;
       }
     }
   }

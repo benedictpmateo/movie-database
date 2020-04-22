@@ -9,10 +9,14 @@
         <title-secondary-details-panel [item]="title"></title-secondary-details-panel>
 
         <videos-panel [mediaItem]="title" *ngIf="title.show_videos || settings.get('titles.show_videos_panel')"></videos-panel>
-        <div class="ads-download">
-            <a *ngIf="!settings.get('button.disable')" [href]="settings.get('button.website') + (!!settings.get('button.useTitle') ? normalize(title.name) : '') + settings.get('button.referral')" target="_blank" class="mat-flat-button mat-accent ng-star-inserted">
-                {{ 'Download ' | trans }}
-            </a>
+        <div class="ads-container">
+            <div *ngIf="!settings.get('blueray.disable')" class="ads-download ads-download--black" [innerHtml]="sanitize(settings.get('blueray.website') + (!!settings.get('blueray.useTitle') ? normalize(title.name, settings.get('blueray.symbol')) : '') + settings.get('blueray.referral'))"></div>
+            <div *ngIf="!settings.get('dvd.disable')" class="ads-download ads-download--black" [innerHtml]="sanitize(settings.get('dvd.website') + (!!settings.get('dvd.useTitle') ? normalize(title.name, settings.get('dvd.symbol')) : '') + settings.get('dvd.referral'))"></div>
+            <div class="ads-download">
+                <a *ngIf="!settings.get('button.disable')" [href]="settings.get('button.website') + (!!settings.get('button.useTitle') ? normalize(title.name, settings.get('button.symbol')) : '') + settings.get('button.referral')" target="_blank" class="mat-flat-button mat-accent ng-star-inserted">
+                    {{ 'Download ' | trans }}
+                </a>
+            </div>
         </div>
 
         <ng-container *ngIf="!!settings.get('titles.tabs_theme')">

@@ -23,7 +23,6 @@ import {UploadQueueService} from '../../../../common/uploads/upload-queue/upload
 })
 export class CrupdatePersonPageComponent implements OnInit, OnDestroy {
     @Select(CrupdatePersonState.loading) loading$: Observable<boolean>;
-    @Select(CrupdatePersonState.credits) credits$: Observable<Title[]>;
     public dataSource = new MatTableDataSource();
 
     public personForm = this.fb.group({

@@ -69,6 +69,8 @@
             </script>
         @endif
 
+        <?php echo $settings->get('js.end_of_body'); ?>
+
         <noscript>You need to have javascript enabled in order to use <strong>{{config('app.name')}}</strong>.</noscript>
 	</body>
 </html>

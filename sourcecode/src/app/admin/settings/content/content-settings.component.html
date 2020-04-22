@@ -203,6 +203,12 @@
         <mat-slide-toggle name="titles.tabs_theme" id="titles.tabs_theme" [(ngModel)]="state.client['titles.tabs_theme']" trans>Enable New Theme For Cast/Comments/Photos</mat-slide-toggle>
         <p trans>Enable or disable new theme for cast/comments/photos.</p>
     </div>
+
+    <div class="input-container">
+        <label for="js.end_of_body" trans>Last code</label>
+        <textarea name="js.end_of_body" id="js.end_of_body" [(ngModel)]="state.client['js.end_of_body']"></textarea>
+        <p trans>Be careful for XSS attack.</p>
+    </div>
     
     <button mat-raised-button color="accent" class="button primary update-button" [disabled]="loading" type="submit" trans>Update</button>
     <mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>

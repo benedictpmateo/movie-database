@@ -1,0 +1,40 @@
+<div class="header">
+    <div class="title" trans>DVD Button</div>
+    <div class="subtitle" trans>Settings of DVD button</div>
+</div>
+<form (ngSubmit)="saveAds()" ngNativeValidate>
+    <div class="row">
+        <div class="col">
+            <div class="input-container">
+                <label [for]="" trans>Website</label>
+                <textarea name="dvd.website" id="dvd.website" [(ngModel)]="model['dvd.website']"></textarea>
+                <p trans>Ads Website</p>
+            </div>
+        </div>
+        <div class="col-margin"></div>
+        <div class="col">
+            <div class="input-container">
+                <label [for]="" trans>Referral</label>
+                <textarea name="dvd.referral" id="dvd.referral" [(ngModel)]="model['dvd.referral']"></textarea>
+                <p trans>Ads Referral</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <label for="" trans>Symbol</label>
+        <input type="text" name="dvd.symbol" [(ngModel)]="model['dvd.symbol']" [ngModelOptions]="{standalone:true}">
+    </div>
+
+    <div class="setting-toggle-container margin-top margin-bottom">
+        <mat-slide-toggle name="dvd.useTitle" id="dvd.useTitle" [(ngModel)]="model['dvd.useTitle']" trans>Enable Title Link</mat-slide-toggle>
+        <p trans>Use title of movie to link.</p>
+    </div>
+
+    <div class="setting-toggle-container margin-top margin-bottom">
+        <mat-slide-toggle name="dvd.disable" id="dvd.disable" [(ngModel)]="model['dvd.disable']" trans>Disable DVD Button</mat-slide-toggle>
+        <p trans>Disable DVD button functionality.</p>
+    </div>
+
+    <button type="submit" mat-raised-button color="accent" class="save-button" [disabled]="loading" trans>Update</button>
+</form>

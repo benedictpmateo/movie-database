@@ -3,6 +3,7 @@ import {Title} from '../../models/title';
 import {MEDIA_TYPE} from '../media-type';
 import {Person} from '../../models/person';
 import {Episode} from '../../models/episode';
+import slugify from 'slugify';
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +12,12 @@ export class TitleUrlsService {
     constructor() {}
 
     public mediaItem(item: Title|Person|Episode): any[] {
+        const slug = slugify(item.name || '', { replacement: '-', lower: true, remove: /[*+~.()'"!:@]/g });
         if (item.type === MEDIA_TYPE.TITLE) {
-            return ['/titles', item.id];
+            if (item.is_series) {
+                return ['/serial', item.id, slug];
+            }
+            return ['/film', item.id, slug];
         } else if (item.type === MEDIA_TYPE.PERSON) {
             return ['/people', item.id];
         } else if (item.type === MEDIA_TYPE.EPISODE) {

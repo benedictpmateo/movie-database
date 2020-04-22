@@ -23,6 +23,7 @@ import {ContactComponent} from '../../common/contact/contact.component';
 import { AccountSettingsComponent } from 'common/account-settings/account-settings.component';
 import { AccountSettingsResolve } from 'common/account-settings/account-settings-resolve.service';
 import { AccountVideosComponent } from 'common/account-videos/account-videos.component';
+import { TitleGuard } from './titles/title-guard.service';
 
 const routes: Routes = [
     {
@@ -57,50 +58,50 @@ const routes: Routes = [
                 component: BrowseTitlesComponent,
                 data: {permissions: ['titles.view'], name: 'browse', willSetSeo: true},
             },
-
-            // titles
-            {
-                path: 'movies/:titleId',
-                redirectTo: 'titles/:titleId'
-            },
-            {
-                path: 'series/:titleId',
-                redirectTo: 'titles/:titleId'
-            },
             {
                 path: 'titles/:titleId',
+                component: TitlePageContainerComponent,
+                canActivate: [TitleGuard],
+            },
+            {
+                path: 'film/:titleId/:slug',
                 component: TitlePageContainerComponent,
                 resolve: {api: TitleResolverService},
                 data: {permissions: ['titles.view'], name: MEDIA_TYPE.MOVIE}
             },
             {
-                path: 'titles/:titleId/full-credits',
+                path: 'serial/:titleId/:slug',
+                component: TitlePageContainerComponent,
+                resolve: {api: TitleResolverService},
+                data: {permissions: ['titles.view'], name: MEDIA_TYPE.MOVIE}
+            },
+            {
+                path: 'film/:titleId/:slug/full-credits',
                 component: FullCreditsPageComponent,
                 resolve: {api: TitleResolverService},
                 data: {permissions: ['titles.view'], name: MEDIA_TYPE.MOVIE, fullCredits: true}
             },
             {
-                path: 'series/:titleId/seasons/:seasonNumber',
-                redirectTo: 'titles/:titleId/season/:seasonNumber'
+                path: 'serial/:titleId/:slug/full-credits',
+                component: FullCreditsPageComponent,
+                resolve: {api: TitleResolverService},
+                data: {permissions: ['titles.view'], name: MEDIA_TYPE.MOVIE, fullCredits: true}
             },
+            // Series
             {
-                path: 'titles/:titleId/season/:seasonNumber',
+                path: 'serial/:titleId/:slug/season/:seasonNumber',
                 component: SeasonPageComponent,
                 resolve: {api: TitleResolverService},
                 data: {permissions: ['titles.view'], name: MEDIA_TYPE.SEASON}
             },
             {
-                path: 'series/:titleId/seasons/:seasonNumber/episodes/:episodeNumber',
-                redirectTo: 'titles/:titleId/season/:seasonNumber/episode/:episodeNumber'
-            },
-            {
-                path: 'titles/:titleId/season/:seasonNumber/episode/:episodeNumber',
+                path: 'serial/:titleId/:slug/season/:seasonNumber/episode/:episodeNumber',
                 component: EpisodePageComponent,
                 resolve: {api: TitleResolverService},
                 data: {permissions: ['titles.view'], name: MEDIA_TYPE.EPISODE}
             },
             {
-                path: 'titles/:titleId/season/:seasonNumber/episode/:episodeNumber/full-credits',
+                path: 'serial/:titleId/:slug/season/:seasonNumber/episode/:episodeNumber/full-credits',
                 component: FullCreditsPageComponent,
                 resolve: {api: TitleResolverService},
                 data: {permissions: ['titles.view'], name: MEDIA_TYPE.MOVIE}

@@ -110,9 +110,13 @@ Route::group(['prefix' => 'secure'], function () {
 $homeController = '\Common\Core\Controllers\HomeController@show';
 Route::get('/', 'HomepageContentController@show')->middleware('prerenderIfCrawler');
 Route::get('browse', 'TitleController@index')->middleware('prerenderIfCrawler');
-Route::get('titles/{id}', 'TitleController@show')->middleware('prerenderIfCrawler');
-Route::get('titles/{id}/season/{season}/episode/{episode}', 'TitleController@show')->middleware('prerenderIfCrawler');
-Route::get('titles/{id}/season/{season}', 'TitleController@show')->middleware('prerenderIfCrawler');
+
+Route::get('titles/{id}', 'TitleController@redirect');
+Route::get('film/{id}/{slug}', 'TitleController@show')->middleware('prerenderIfCrawler');
+
+Route::get('serial/{id}/{slug}', 'TitleController@show')->middleware('prerenderIfCrawler');
+Route::get('serial/{id}/{slug}/season/{season}/episode/{episode}', 'TitleController@show')->middleware('prerenderIfCrawler');
+Route::get('serial/{id}/{slug}/season/{season}', 'TitleController@show')->middleware('prerenderIfCrawler');
 Route::get('people', 'PersonController@index')->middleware('prerenderIfCrawler');
 Route::get('people/{id}', 'PersonController@show')->middleware('prerenderIfCrawler');
 Route::get('news', 'NewsController@index')->middleware('prerenderIfCrawler');

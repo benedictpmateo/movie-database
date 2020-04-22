@@ -14,6 +14,7 @@ import {CurrentUser} from '../../../../../common/auth/current-user';
 import {MESSAGES} from '../../../../toast-messages';
 import {Translations} from '../../../../../common/core/translations/translations.service';
 import {Toast} from '../../../../../common/core/ui/toast.service';
+import slugify from 'slugify';
 
 @Component({
     selector: 'title-primary-details-panel',
@@ -49,7 +50,8 @@ export class TitlePrimaryDetailsPanelComponent {
 
     public shareUsing(type: ShareableNetworks | 'mail' | 'copy') {
         const title = this.store.selectSnapshot(TitleState.title);
-        const link = this.settings.getBaseUrl(true) + 'titles/' + title.id;
+        const slug = slugify(title.name || '', { replacement: '-', lower: true, remove: /[*+~.()'"!:@]/g });
+        const link = this.settings.getBaseUrl(true) + (title.is_series ? 'serial/' : 'film/') + title.id + '/' + slug;
 
         if (type === 'mail') {
             const siteName = this.settings.get('branding.site_name');

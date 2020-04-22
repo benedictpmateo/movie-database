@@ -10,6 +10,8 @@ import {OverlayPanel} from '../../../../common/core/ui/overlay-panel/overlay-pan
 import {ImageGalleryOverlayComponent} from '../../shared/image-gallery-overlay/image-gallery-overlay.component';
 import {ViewportScroller} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import {Translations} from '../../../../common/core/translations/translations.service';
 
 @Component({
     selector: 'title-page-container',
@@ -28,6 +30,8 @@ export class TitlePageContainerComponent implements OnInit {
         private overlay: OverlayPanel,
         private route: ActivatedRoute,
         private viewportScroller: ViewportScroller,
+        private sanitizer: DomSanitizer,
+        private i18n: Translations,
     ) {}
 
     ngOnInit() {
@@ -50,10 +54,13 @@ export class TitlePageContainerComponent implements OnInit {
         });
     }
 
-    public normalize(str: String) {
-        const symbol = this.settings.get('button.symbol');
+    public normalize(str: string, symbol: string) {
         let result = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         result = result.replace(/[ !@#$%^&*()?{}:";'<>,.+_=]/g, symbol || '-');
         return result;
+    }
+
+    public sanitize (html: string) {
+        return this.sanitizer.bypassSecurityTrustHtml(html);
     }
 }

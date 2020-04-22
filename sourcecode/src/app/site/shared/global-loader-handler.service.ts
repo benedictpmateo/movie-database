@@ -10,10 +10,12 @@ import {stringsMatch} from '../../../common/core/utils/strings-match';
 })
 export class GlobalLoaderHandlerService {
     private triggerPatterns = [
-        '/titles/*',
-        '/titles/*/full-credits',
-        '/titles/*/season/*',
-        '/titles/*/season/*/episode/*',
+        '/film/*',
+        '/serial/*',
+        '/film/*/*/full-credits',
+        '/serial/*/*/full-credits',
+        '/serial/*/*/season/*',
+        '/serial/*/*/season/*/episode/*',
         '/people/*',
         '/search?query=*',
     ];

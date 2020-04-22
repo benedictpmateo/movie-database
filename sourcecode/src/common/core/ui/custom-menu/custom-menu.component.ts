@@ -97,6 +97,17 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
         }
     }
 
+    public getUrl(url: string, queryParams: any) {
+        if (queryParams) {
+            let queryString = Object.keys(queryParams).map(function(key) {
+                return key + '=' + queryParams[key]
+            }).join('&');
+
+            return `/${url}?${queryString}`;
+        }
+        return `/${url}`;
+    }
+
     ngOnDestroy() {
         this.subscriptions.forEach(subscription => {
             subscription && subscription.unsubscribe();

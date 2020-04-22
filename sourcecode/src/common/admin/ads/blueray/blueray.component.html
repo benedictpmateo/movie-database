@@ -1,0 +1,40 @@
+<div class="header">
+    <div class="title" trans>Blueray Button</div>
+    <div class="subtitle" trans>Settings of blueray button</div>
+</div>
+<form (ngSubmit)="saveAds()" ngNativeValidate>
+    <div class="row">
+        <div class="col">
+            <div class="input-container">
+                <label [for]="" trans>Website</label>
+                <textarea name="blueray.website" id="blueray.website" [(ngModel)]="model['blueray.website']"></textarea>
+                <p trans>Ads Website</p>
+            </div>
+        </div>
+        <div class="col-margin"></div>
+        <div class="col">
+            <div class="input-container">
+                <label [for]="" trans>Referral</label>
+                <textarea name="blueray.referral" id="blueray.referral" [(ngModel)]="model['blueray.referral']"></textarea>
+                <p trans>Ads Referral</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <label for="" trans>Symbol</label>
+        <input type="text" name="blueray.symbol" [(ngModel)]="model['blueray.symbol']" [ngModelOptions]="{standalone:true}">
+    </div>
+
+    <div class="setting-toggle-container margin-top margin-bottom">
+        <mat-slide-toggle name="blueray.useTitle" id="blueray.useTitle" [(ngModel)]="model['blueray.useTitle']" trans>Enable Title Link</mat-slide-toggle>
+        <p trans>Use title of movie to link.</p>
+    </div>
+
+    <div class="setting-toggle-container margin-top margin-bottom">
+        <mat-slide-toggle name="blueray.disable" id="blueray.disable" [(ngModel)]="model['blueray.disable']" trans>Disable blueray button</mat-slide-toggle>
+        <p trans>Disable blueray button functionality.</p>
+    </div>
+
+    <button type="submit" mat-raised-button color="accent" class="save-button" [disabled]="loading" trans>Update</button>
+</form>

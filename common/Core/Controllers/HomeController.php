@@ -71,7 +71,7 @@ class HomeController extends Controller {
                 $keywords = $this->settings->has('seo.home.show.keywords') ? 
                     $this->settings->get('seo.home.show.keywords') : $this->find($tags, 'property', 'keywords')['content'];
                 break;
-            case 'titles/{id}/season/{season}/episode/{episode}':
+            case 'serial/{id}/{slug}/season/{season}/episode/{episode}':
                 $cont1 = Title::find(request()->id);
                 $cont2 = Episode::find(request()->episode);
 
@@ -91,7 +91,7 @@ class HomeController extends Controller {
                 $keywords = $this->settings->has('seo.episode.show.keywords') ? 
                     $this->settings->get('seo.episode.show.keywords') : $this->find($tags, 'property', 'keywords')['content'];
                 break;
-            case 'titles/{id}/season/{season}':
+            case 'serial/{id}/{slug}/season/{season}':
                 $cont = Title::find(request()->id);
                 $obj = array(
                     'TITLE.NAME' => $cont->name,
@@ -108,7 +108,8 @@ class HomeController extends Controller {
                 $keywords = $this->settings->has('seo.season.show.keywords') ? 
                     $this->settings->get('seo.season.show.keywords') : $this->find($tags, 'property', 'keywords')['content'];
                 break;
-            case 'titles/{id}':
+            case 'film/{id}/{slug}':
+            case 'serial/{id}/{slug}':
                 $cont = Title::find(request()->id);
                 $obj = array(
                     'TITLE.NAME' => $cont->name,
@@ -163,6 +164,7 @@ class HomeController extends Controller {
                     'ARTICLE.TITLE' => $cont->title,
                     'ARTICLE.BODY' => $cont->body,
                     'ARTICLE.DESCRIPTION' => $cont->body,
+                    'ARTICLE.DESCRIPTIONS' => $cont->body,
                     'SITE_NAME' => $siteName,
                 );
                 $tags = config('seo.news.show');

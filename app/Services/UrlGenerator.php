@@ -9,6 +9,7 @@ use App\Episode;
 use Common\Tags\Tag;
 use App\NewsArticle;
 use Common\Core\Prerender\BaseUrlGenerator;
+use Illuminate\Support\Str;
 
 class UrlGenerator extends BaseUrlGenerator
 {

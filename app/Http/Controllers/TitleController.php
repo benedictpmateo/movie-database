@@ -19,6 +19,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Services\Data\Tmdb\TmdbApi;
+use Illuminate\Support\Str;
 
 class TitleController extends Controller
 {
@@ -77,7 +78,7 @@ class TitleController extends Controller
      * @param string $episodeNumber
      * @return JsonResponse
      */
-    public function show($titleId, $seasonNumber = null, $episodeNumber = null)
+    public function show($titleId, $slug, $seasonNumber = null, $episodeNumber = null)
     {
         $this->authorize('show', Title::class);
 
@@ -113,6 +114,19 @@ class TitleController extends Controller
         ];
 
         return $this->success($response, 200, $options);
+    }
+
+    public function redirect($titleId)
+    {
+        $this->authorize('show', Title::class);
+
+        $title = $this->title->find($titleId);
+        $slug = Str::slug($title->name, '-');
+
+        if ($title->is_series) {
+            return redirect('serial/'.$titleId.'/'.$slug);
+        }
+        return redirect('film/'.$titleId.'/'.$slug);
     }
 
     /**
